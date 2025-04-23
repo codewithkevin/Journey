@@ -1,0 +1,82 @@
+[
+  {
+    "id": "c1",
+    "title": "Mastering JavaScript: From Zero to Hero",
+    "description": "A full-stack journey from basic syntax to building full applications.",
+    "price": 99.99,
+    "duration": "6 weeks",
+    "level": "Beginner to Advanced"
+  },
+  {
+    "id": "c2",
+    "title": "UI/UX Design Bootcamp: Design Like a Pro",
+    "description": "Learn wireframing, user flows, and high-fidelity prototypes with Figma.",
+    "price": 79.99,
+    "duration": "4 weeks",
+    "level": "Beginner to Intermediate"
+  },
+  {
+    "id": "c3",
+    "title": "Public Speaking & Presentation Mastery",
+    "description": "Boost your confidence and delivery skills for virtual and in-person talks.",
+    "price": 49.99,
+    "duration": "3 weeks",
+    "level": "All Levels"
+  },
+  {
+    "id": "c4",
+    "title": "Digital Marketing Deep Dive: SEO, Ads & Funnels",
+    "description": "A hands-on course covering content strategy, PPC, and email marketing.",
+    "price": 109.99,
+    "duration": "5 weeks",
+    "level": "Intermediate"
+  },
+  {
+    "id": "c5",
+    "title": "Python for Data Analysis & Automation",
+    "description": "Master data handling, cleaning, and automation scripts using Python.",
+    "price": 89.99,
+    "duration": "6 weeks",
+    "level": "Beginner to Intermediate"
+  },
+  {
+    "id": "c6",
+    "title": "Business Fundamentals for Freelancers",
+    "description": "Learn contracts, pricing, pitching, and how to manage clients effectively.",
+    "price": 59.99,
+    "duration": "3 weeks",
+    "level": "All Levels"
+  },
+  {
+    "id": "c7",
+    "title": "Fullstack Web Development with MERN",
+    "description": "Build scalable web apps with MongoDB, Express, React, and Node.js.",
+    "price": 119.99,
+    "duration": "8 weeks",
+    "level": "Intermediate to Advanced"
+  },
+  {
+    "id": "c8",
+    "title": "Illustration & Digital Art with Procreate",
+    "description": "Explore digital sketching, coloring, and effects on the iPad.",
+    "price": 39.99,
+    "duration": "4 weeks",
+    "level": "Beginner"
+  },
+  {
+    "id": "c9",
+    "title": "Advanced Excel & Google Sheets for Analysts",
+    "description": "Master pivot tables, formulas, dashboards, and automation.",
+    "price": 69.99,
+    "duration": "3 weeks",
+    "level": "Intermediate"
+  },
+  {
+    "id": "c10",
+    "title": "Photography Masterclass: From Auto to Manual",
+    "description": "Learn camera settings, composition, and editing basics.",
+    "price": 54.99,
+    "duration": "5 weeks",
+    "level": "Beginner"
+  }
+]
