@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "username": "Williams",
+    "userAvatar": "https://img.freepik.com/free-photo/african-teenage-girl-portrait-happy-smiling-face_53876-146757.jpg?semt=ais_hybrid&w=740",
+    "content": "https://img.freepik.com/free-photo/smiley-african-woman-with-golden-earrings_23-2148747979.jpg?semt=ais_hybrid&w=740",
+    "viewed": false,
+    "timestamp": "2h ago"
+  },
+  {
+    "id": "2",
+    "username": "James",
+    "userAvatar": "https://img.freepik.com/free-photo/smiley-african-woman-with-golden-earrings_23-2148747979.jpg?semt=ais_hybrid&w=740",
+    "content": "https://img.freepik.com/free-photo/casual-young-african-man-smiling-isolated-white_93675-128895.jpg?semt=ais_hybrid&w=740",
+    "viewed": false,
+    "timestamp": "5h ago"
+  },
+  {
+    "id": "3",
+    "username": "Osei",
+    "userAvatar": "https://img.freepik.com/free-photo/smiley-african-woman-with-golden-earrings_23-2148747979.jpg?semt=ais_hybrid&w=740",
+    "content": "https://img.freepik.com/free-photo/casual-young-african-man-smiling-isolated-white_93675-128895.jpg?semt=ais_hybrid&w=740",
+    "viewed": true,
+    "timestamp": "1d ago"
+  },
+  {
+    "id": "4",
+    "username": "Ahmed",
+    "userAvatar": "https://img.freepik.com/free-photo/smiley-african-woman-with-golden-earrings_23-2148747979.jpg?semt=ais_hybrid&w=740",
+    "content": "https://img.freepik.com/free-photo/casual-young-african-man-smiling-isolated-white_93675-128895.jpg?semt=ais_hybrid&w=740",
+    "viewed": false,
+    "timestamp": "3h ago"
+  },
+  {
+    "id": "5",
+    "username": "Priya",
+    "userAvatar": "https://img.freepik.com/free-photo/smiley-african-woman-with-golden-earrings_23-2148747979.jpg?semt=ais_hybrid&w=740",
+    "content": "https://img.freepik.com/free-photo/casual-young-african-man-smiling-isolated-white_93675-128895.jpg?semt=ais_hybrid&w=740",
+    "viewed": true,
+    "timestamp": "12h ago"
+  }
+]

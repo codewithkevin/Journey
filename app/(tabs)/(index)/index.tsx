@@ -1,13 +1,18 @@
 import { AntDesign } from "@expo/vector-icons";
-import { View, StyleSheet, Text, useColorScheme } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  ScrollView,
+  FlatList,
+} from "react-native";
 import { Tabs, MaterialTabBar } from "react-native-collapsible-tab-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import users from "../../../dummy/users.json";
 import { categoryTabs } from "@/dummy/categoryTabs.dummy";
-import { StyledExpoImage } from "@/components/Image";
 import { useMemo } from "react";
-
 import contentData from "../../../dummy/posts.json";
+import storyData from "../../../dummy/stories.json";
 import { IJob } from "@/types/job.types";
 import { ICourse } from "@/types/courses.types";
 import { IMentor } from "@/types/mentor.types";
@@ -15,64 +20,14 @@ import CourseCard from "@/components/ui/cards/CourseCard";
 import MentorCard from "@/components/ui/cards/MentorsCard";
 import { Colors } from "@/constants/Colors";
 import { ThemedView } from "@/components/ThemedView";
+import { useContentData } from "@/hooks/useContentData";
+import { ThemedText } from "@/components/ThemedText";
+import StoriesComponent from "@/components/ui/Story";
 
 type ContentItem = IJob | ICourse | IMentor;
 
-const Header = () => {
-  const currentUser = users[0];
-  const insets = useSafeAreaInsets();
-  const colorScheme = useColorScheme();
-
-  return (
-    <View
-      style={{
-        paddingTop: insets.top,
-        backgroundColor: Colors[colorScheme ?? "light"].primary,
-      }}
-      className="w-full bg-white dark:bg-black"
-    >
-      <View className="w-full flex-row items-center justify-between px-4 py-2">
-        <View>
-          <StyledExpoImage
-            source={{
-              uri: currentUser.profile_picture,
-            }}
-            className="h-10 w-10 rounded-full"
-          />
-        </View>
-
-        <View>
-          {/* <StyledExpoImage
-            source={require("../../../assets/svg/aside/3.png")}
-            className="h-12 w-12 rounded-full"
-          /> */}
-        </View>
-
-        <View />
-      </View>
-    </View>
-  );
-};
-
 const TabContent = ({ tabName }: { tabName: string }) => {
-  const data = useMemo(() => {
-    switch (tabName) {
-      case "Find Mentors":
-        return contentData.filter((item) => item.category === "mentorship");
-      case "Featured Mentors":
-        return contentData.filter(
-          (item) => item.tags && item.tags.includes("Featured Mentors")
-        );
-      case "Mentors":
-        return contentData.filter((item) => item.category === "mentorship");
-      case "Courses":
-        return contentData.filter((item) => item.category === "course");
-      case "Journals":
-        return contentData;
-      default:
-        return [];
-    }
-  }, [tabName]);
+  const { data, loading } = useContentData(tabName);
 
   const renderItem = ({ item }: { item: ContentItem }) => {
     switch (item.category) {
@@ -85,6 +40,8 @@ const TabContent = ({ tabName }: { tabName: string }) => {
     }
   };
 
+  if (loading) return null;
+
   if (data.length === 0) {
     return (
       <View style={styles.emptyContainer}>
@@ -94,12 +51,110 @@ const TabContent = ({ tabName }: { tabName: string }) => {
     );
   }
 
+  if (tabName === "Find Mentors") {
+    const mentors = data.filter((item) => item.category === "mentorship");
+
+    return (
+      <Tabs.ScrollView
+        contentContainerStyle={[
+          styles.listContainer,
+          { paddingBottom: 100, marginTop: 10, gap: 20 },
+        ]}
+        showsVerticalScrollIndicator={false}
+      >
+        {renderStories()}
+        {mentors.length > 0 && (
+          <View style={styles.sectionContainer}>
+            <ThemedText
+              style={{
+                marginLeft: 10,
+              }}
+              type="heading"
+            >
+              Top Mentors
+            </ThemedText>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.horizontalList}
+            >
+              {mentors.map((item) => (
+                <View key={item.id} style={styles.cardContainer}>
+                  <MentorCard item={item} />
+                </View>
+              ))}
+            </ScrollView>
+          </View>
+        )}
+        {mentors.length > 0 && (
+          <View style={styles.sectionContainer}>
+            <ThemedText
+              style={{
+                marginLeft: 10,
+              }}
+              type="heading"
+            >
+              Suggested Mentors
+            </ThemedText>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.horizontalList}
+            >
+              {mentors.map((item) => (
+                <View key={item.id} style={styles.cardContainer}>
+                  <MentorCard item={item} />
+                </View>
+              ))}
+            </ScrollView>
+          </View>
+        )}
+        {mentors.length > 0 && (
+          <View style={styles.sectionContainer}>
+            <ThemedText
+              style={{
+                marginLeft: 10,
+              }}
+              type="heading"
+            >
+              New Mentors
+            </ThemedText>
+            <View
+              style={{
+                flexDirection: "row",
+                flexWrap: "wrap",
+                marginHorizontal: 6,
+              }}
+            >
+              {mentors.map((item) => (
+                <View
+                  key={item.id}
+                  style={{
+                    width: "50%",
+                    paddingHorizontal: 6,
+                    marginBottom: 12,
+                  }}
+                >
+                  <MentorCard item={item} />
+                </View>
+              ))}
+            </View>
+          </View>
+        )}
+      </Tabs.ScrollView>
+    );
+  }
+
   return (
     <Tabs.FlatList
       data={data}
+      ListHeaderComponent={renderStories()}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
-      contentContainerStyle={[styles.listContainer, { paddingBottom: 100 }]}
+      contentContainerStyle={[
+        styles.listContainer,
+        { paddingBottom: 100, gap: 20 },
+      ]}
       showsVerticalScrollIndicator={false}
       ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
     />
@@ -136,6 +191,7 @@ export default function HomeScreen() {
         shadowOpacity: 0,
         borderBottomWidth: 0,
         backgroundColor: backgroundColor,
+        paddingTop: 70,
       }}
       labelStyle={{
         marginHorizontal: 10,
@@ -152,11 +208,10 @@ export default function HomeScreen() {
   return (
     <ThemedView className="flex-1">
       <Tabs.Container
-        renderHeader={Header}
         renderTabBar={renderTabBar}
         pagerProps={{ scrollEnabled: true }}
         initialTabName="Find Mentors"
-        minHeaderHeight={-60}
+        minHeaderHeight={-190}
         revealHeaderOnScroll
         headerContainerStyle={{
           backgroundColor: "transparent",
@@ -175,6 +230,18 @@ export default function HomeScreen() {
   );
 }
 
+const renderStories = () => {
+  return (
+    <FlatList
+      data={storyData}
+      keyExtractor={(item, index) => index.toString()}
+      renderItem={({ item }) => <StoriesComponent stories={item} />}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+    />
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -182,7 +249,6 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   listContainer: {
-    paddingHorizontal: 16,
     paddingTop: 16,
     paddingBottom: 32,
   },
@@ -197,5 +263,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#606E79",
     textAlign: "center",
+  },
+  sectionContainer: {
+    marginBottom: 24,
+    gap: 14,
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 12,
+  },
+  horizontalList: {
+    paddingBottom: 8,
+  },
+  cardContainer: {
+    marginHorizontal: 6,
   },
 });
