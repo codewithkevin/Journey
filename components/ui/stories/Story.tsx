@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
-import { StoryCircle } from "./StoryCircle";
-import { StoryViewer } from "./StoryViewer";
-import { ThemedView } from "../ThemedView";
+import { ThemedView } from "@/components/ThemedView";
+import { StoryCircle } from "@/components/ui/stories/StoryCircle";
+import { StoryViewer } from "@/components/ui/stories/StoryViewer";
 
 // Define the Story interface
 interface Story {

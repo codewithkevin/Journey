@@ -1,7 +1,7 @@
 export const categoryTabs = [
+    "Blurbs",
     "Find Mentors",
     "Courses",
-    "Featured Mentors",
-    "Discover",
-    "Journals",
+    "Jobs",
+    "Threads",
 ];

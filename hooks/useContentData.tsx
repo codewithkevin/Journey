@@ -3,8 +3,9 @@ import contentData from "../dummy/posts.json";
 import { IJob } from "@/types/job.types";
 import { ICourse } from "@/types/courses.types";
 import { IMentor } from "@/types/mentor.types";
+import { IBlurb } from "@/types/blurbs.types";
 
-export type ContentItem = IJob | ICourse | IMentor;
+export type ContentItem = IJob | ICourse | IMentor | IBlurb;
 
 type FilterConfig = {
   [key: string]: (data: ContentItem[]) => ContentItem[];
@@ -15,13 +16,9 @@ export const useContentData = (tabName: string) => {
     () => ({
       "Find Mentors": (data) =>
         data.filter((item) => item.category === "mentorship"),
-      "Featured Mentors": (data) =>
-        data.filter(
-          (item) => item.tags && item.tags.includes("Featured Mentors")
-        ),
       Mentors: (data) => data.filter((item) => item.category === "mentorship"),
       Courses: (data) => data.filter((item) => item.category === "course"),
-      Journals: (data) => data,
+      Blurbs: (data) => data.filter((item) => item.category === "blurbs"),
     }),
     []
   );

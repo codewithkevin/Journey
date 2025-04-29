@@ -10,3 +10,11 @@ export const formatDate = (dateString: string) => {
 
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 };
+
+export const truncatedString = (str: string, num: number) => {
+  if (str.length > num) {
+    return str.slice(0, num) + "...";
+  } else {
+    return str;
+  }
+};

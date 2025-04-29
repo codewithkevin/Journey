@@ -1,6 +1,6 @@
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
 import { Image, StyleSheet, TouchableOpacity } from "react-native";
-import { ThemedView } from "../ThemedView";
-import { ThemedText } from "../ThemedText";
 
 interface Story {
   id: string;

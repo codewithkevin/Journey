@@ -5,10 +5,10 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Slot, Stack } from "expo-router";
+import { Slot } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "react-native-reanimated";
 import AnimatedSplash from "react-native-animated-splash-screen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
@@ -35,9 +35,7 @@ export default function RootLayout() {
     <AnimatedSplash
       translucent
       isLoaded={loaded}
-      logoImage={{
-        uri: "https://upload.wikimedia.org/wikipedia/commons/5/57/X_logo_2023_%28white%29.png",
-      }}
+      logoImage={require("../assets/images/icon.png")}
       backgroundColor="#000000"
       logoHeight={150}
       logoWidth={150}
@@ -47,8 +45,8 @@ export default function RootLayout() {
           <ThemeProvider
             value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
           >
-            <Slot />
             <StatusBar style="auto" />
+            <Slot />
           </ThemeProvider>
         </BottomSheetModalProvider>
       </GestureHandlerRootView>

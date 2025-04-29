@@ -22,9 +22,11 @@ import { Colors } from "@/constants/Colors";
 import { ThemedView } from "@/components/ThemedView";
 import { useContentData } from "@/hooks/useContentData";
 import { ThemedText } from "@/components/ThemedText";
-import StoriesComponent from "@/components/ui/Story";
+import StoriesComponent from "@/components/ui/stories/Story";
+import { IBlurb } from "@/types/blurbs.types";
+import Blurb from "@/components/ui/Blurbs";
 
-type ContentItem = IJob | ICourse | IMentor;
+type ContentItem = IJob | ICourse | IMentor | IBlurb;
 
 const TabContent = ({ tabName }: { tabName: string }) => {
   const { data, loading } = useContentData(tabName);
@@ -35,6 +37,8 @@ const TabContent = ({ tabName }: { tabName: string }) => {
         return <CourseCard item={item} />;
       case "mentorship":
         return <MentorCard item={item} />;
+      case "blurbs":
+        return <Blurb item={item} />;
       default:
         return null;
     }
@@ -210,7 +214,7 @@ export default function HomeScreen() {
       <Tabs.Container
         renderTabBar={renderTabBar}
         pagerProps={{ scrollEnabled: true }}
-        initialTabName="Find Mentors"
+        initialTabName="Blurbs"
         minHeaderHeight={-190}
         revealHeaderOnScroll
         headerContainerStyle={{
