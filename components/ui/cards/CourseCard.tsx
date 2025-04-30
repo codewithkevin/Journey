@@ -10,101 +10,49 @@ import { ICourse } from "@/types/courses.types";
 import { blueColors, Colors } from "@/constants/Colors";
 import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
+import { Image, ImageBackground } from "expo-image";
 
 export default function CourseCard({ item }: { item: ICourse }) {
   const colorScheme = useColorScheme();
 
   return (
-    <TouchableOpacity
-      style={[
-        styles.card,
-        {
-          backgroundColor: Colors[colorScheme ?? "light"].background,
-          shadowColor: Colors[colorScheme ?? "light"].text,
-          shadowOpacity: colorScheme === "dark" ? 0.5 : 0.2,
-        },
-      ]}
-      activeOpacity={0.7}
-    >
-      <ThemedView style={styles.cardHeader}>
-        <ThemedText style={styles.cardTitle}>{item.title}</ThemedText>
-        <ThemedView style={[styles.badge, { backgroundColor: "#e8f5e9" }]}>
-          <ThemedText style={{ color: "#388e3c" }}>{item.level}</ThemedText>
-        </ThemedView>
-      </ThemedView>
+    <TouchableOpacity>
+      <ThemedView
+        style={{
+          backgroundColor:
+            colorScheme === "dark" ? "#171717" : Colors.light.background,
+          padding: 13,
+          marginHorizontal: 10,
+          borderRadius: 20,
+          width: 260,
+          height: 290,
+          gap: 5,
+        }}
+      >
+        <Image
+          source={{
+            uri: item.coverImage,
+          }}
+          style={{
+            width: "100%",
+            height: "57%",
+            borderRadius: 20,
+            resizeMode: "cover",
+          }}
+        />
 
-      <ThemedText style={styles.description} numberOfLines={3}>
-        {item.description}
-      </ThemedText>
+        <View className="gap-1">
+          <ThemedText type="defaultSemiBold">{item.title}</ThemedText>
 
-      <ThemedView style={styles.cardFooter}>
-        <ThemedText style={styles.price}>${item.price}</ThemedText>
-        <ThemedView style={styles.courseDetailsRow}>
-          <ThemedText style={styles.duration}>{item.duration}</ThemedText>
-          <ThemedText style={styles.tutor}>by {item.tutor}</ThemedText>
-        </ThemedView>
+          <ThemedText type="link">{item.duration}</ThemedText>
+        </View>
+
+        <View className="flex-row items-center justify-between">
+          <ThemedText type="defaultSemiBold">{item.tutor}</ThemedText>
+
+          <ThemedText type="defaultSemiBold">$ {item.price}</ThemedText>
+        </View>
       </ThemedView>
     </TouchableOpacity>
   );
 }
-
-const styles = StyleSheet.create({
-  card: {
-    borderRadius: 12,
-    padding: 16,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  cardHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 8,
-  },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: "600",
-    flex: 1,
-    marginRight: 8,
-  },
-  badge: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 8,
-  },
-  description: {
-    fontSize: 14,
-    marginBottom: 12,
-    lineHeight: 20,
-  },
-  cardFooter: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  date: {
-    fontSize: 14,
-  },
-  price: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#1DA1F2",
-  },
-  courseDetailsRow: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  duration: {
-    fontSize: 14,
-    marginRight: 8,
-  },
-  tutor: {
-    fontSize: 14,
-  },
-});

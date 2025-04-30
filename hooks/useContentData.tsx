@@ -19,6 +19,7 @@ export const useContentData = (tabName: string) => {
       Mentors: (data) => data.filter((item) => item.category === "mentorship"),
       Courses: (data) => data.filter((item) => item.category === "course"),
       Blurbs: (data) => data.filter((item) => item.category === "blurbs"),
+      Jobs: (data) => data.filter((item) => item.category === "job"),
     }),
     []
   );

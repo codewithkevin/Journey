@@ -11,6 +11,7 @@ export type ThemedTextProps = TextProps & {
     | "heading"
     | "defaultSemiBold"
     | "subtitle"
+    | "smallBold"
     | "link";
 };
 
@@ -32,6 +33,7 @@ export function ThemedText({
         type === "heading" ? styles.heading : undefined,
         type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
         type === "subtitle" ? styles.subtitle : undefined,
+        type === "smallBold" ? styles.smallBold : undefined,
         type === "link" ? styles.link : undefined,
 
         style,
@@ -64,6 +66,11 @@ const styles = StyleSheet.create({
   subtitle: {
     fontSize: 20,
     fontWeight: "bold",
+  },
+  smallBold: {
+    fontSize: 14,
+    fontWeight: "bold",
+    lineHeight: 20,
   },
   link: {
     lineHeight: 30,

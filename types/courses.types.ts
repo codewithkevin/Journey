@@ -9,4 +9,5 @@ export interface ICourse {
     postedDate: string;
     tutor: string;
     tags?: string[]
+    coverImage?: string
 }

@@ -2,8 +2,10 @@
   {
     "id": "j1",
     "category": "job",
-    "title": "JavaScript Mentor",
+    "jobTitle": "Analytic Data",
     "company": "CodeCamp Academy",
+    "isFullTime": true,
+    "experience": "5+ years",
     "location": "Remote",
     "type": "Part-Time",
     "description": "Mentor junior developers on JavaScript and frontend best practices.",
@@ -13,33 +15,55 @@
       "HTML/CSS",
       "Mentorship experience"
     ],
-    "salary": "$35/hour",
+    "salary": "$35 / Hour",
     "postedDate": "2025-04-18",
-    "tags": ["JavaScript", "remote", "part-time"]
+    "tags": ["JavaScript", "remote", "part-time"],
+    "postedTime": "1 Week Ago",
+    "profileImage": "https://img.freepik.com/free-photo/portrait-african-american-man_23-2149072214.jpg?semt=ais_hybrid&w=740"
   },
   {
     "id": "j2",
     "category": "job",
-    "title": "Data Science Tutor",
-    "company": "LearnTech",
-    "location": "New York, NY",
-    "type": "Contract",
-    "description": "Provide hands-on training in Python, pandas, and machine learning.",
-    "requirements": ["Python", "pandas", "NumPy", "ML experience"],
-    "salary": "$70,000/year",
-    "postedDate": "2025-04-16"
+    "jobTitle": "System Adminstrator",
+    "company": "Facebook",
+    "isFullTime": true,
+    "experience": "1+ years",
+    "location": "On-site",
+    "type": "Full Type",
+    "description": "Create and maintain servers and networks, install and configure software, and troubleshoot issues.",
+    "requirements": [
+      "JavaScript",
+      "React",
+      "HTML/CSS",
+      "Mentorship experience"
+    ],
+    "salary": "$3500 / Month",
+    "postedDate": "2025-04-18",
+    "tags": ["JavaScript", "remote", "part-time"],
+    "postedTime": "3 days Ago",
+    "profileImage": "https://img.freepik.com/free-psd/3d-icon-social-media-app_23-2150049579.jpg?ga=GA1.1.1312441652.1745884555&semt=ais_hybrid&w=740"
   },
   {
     "id": "j3",
     "category": "job",
-    "title": "UI/UX Design Instructor",
-    "company": "Design School Pro",
+    "jobTitle": "DevOps Engineer",
+    "company": "Google",
+    "isFullTime": true,
+    "experience": "5+ years",
     "location": "Remote",
-    "type": "Freelance",
-    "description": "Teach design principles, Figma workflows, and user experience testing.",
-    "requirements": ["Figma", "UX Design", "Wireframing", "Portfolio Review"],
-    "salary": "$45/hour",
-    "postedDate": "2025-04-15"
+    "type": "Part-Time",
+    "description": "Create and maintain servers and networks, install and configure software, and troubleshoot issues.",
+    "requirements": [
+      "JavaScript",
+      "React",
+      "HTML/CSS",
+      "Mentorship experience"
+    ],
+    "salary": "$35 / Hour",
+    "postedDate": "2025-04-18",
+    "tags": ["JavaScript", "remote", "part-time"],
+    "postedTime": "1 Week Ago",
+    "profileImage": "https://img.freepik.com/free-psd/google-icon-isolated-3d-render-illustration_47987-9777.jpg?ga=GA1.1.1312441652.1745884555&semt=ais_hybrid&w=740"
   },
   {
     "id": "c1",
@@ -50,105 +74,44 @@
     "duration": "6 weeks",
     "level": "Beginner to Advanced",
     "postedDate": "2025-04-15",
-    "tutor": "John Doe"
+    "tutor": "John Doe",
+    "coverImage": "https://img.freepik.com/free-photo/students-paying-attention-class_23-2148844729.jpg?ga=GA1.1.1312441652.1745884555&semt=ais_hybrid&w=740"
   },
   {
-    "id": "j4",
-    "category": "job",
-    "title": "DevOps Career Coach",
-    "company": "CloudMentor",
-    "location": "Remote",
-    "type": "Part-Time",
-    "description": "Guide students through DevOps tools and cloud deployment pipelines.",
-    "requirements": ["Docker", "Kubernetes", "AWS", "CI/CD"],
-    "salary": "$50/hour",
-    "postedDate": "2025-04-14"
+    "id": "c2",
+    "category": "course",
+    "title": "Mastering JavaScript: From Zero to Hero",
+    "description": "A full-stack journey from basic syntax to building full applications.",
+    "price": 99.99,
+    "duration": "6 weeks",
+    "level": "Beginner to Advanced",
+    "postedDate": "2025-04-15",
+    "tutor": "John Doe",
+    "coverImage": "https://img.freepik.com/free-photo/students-paying-attention-class_23-2148844729.jpg?ga=GA1.1.1312441652.1745884555&semt=ais_hybrid&w=740"
   },
   {
-    "id": "j5",
-    "category": "job",
-    "title": "Mobile Development Tutor",
-    "company": "AppBuilder Institute",
-    "location": "Austin, TX",
-    "type": "Full-Time",
-    "description": "Support students learning React Native and cross-platform app development.",
-    "requirements": [
-      "React Native",
-      "JavaScript",
-      "Expo",
-      "Teaching experience"
-    ],
-    "salary": "$80,000/year",
-    "postedDate": "2025-04-12"
+    "id": "c3",
+    "category": "course",
+    "title": "Mastering JavaScript: From Zero to Hero",
+    "description": "A full-stack journey from basic syntax to building full applications.",
+    "price": 99.99,
+    "duration": "6 weeks",
+    "level": "Beginner to Advanced",
+    "postedDate": "2025-04-15",
+    "tutor": "John Doe",
+    "coverImage": "https://img.freepik.com/free-photo/students-paying-attention-class_23-2148844729.jpg?ga=GA1.1.1312441652.1745884555&semt=ais_hybrid&w=740"
   },
   {
-    "id": "j6",
-    "category": "job",
-    "title": "AI & ML Mentor",
-    "company": "FutureAI Academy",
-    "location": "Remote",
-    "type": "Contract",
-    "description": "Help learners build intelligent systems using Python and ML libraries.",
-    "requirements": [
-      "Python",
-      "scikit-learn",
-      "TensorFlow",
-      "Model Deployment"
-    ],
-    "salary": "$60/hour",
-    "postedDate": "2025-04-11"
-  },
-  {
-    "id": "j7",
-    "category": "job",
-    "title": "Public Speaking Coach",
-    "company": "SpeakWell",
-    "location": "Chicago, IL",
-    "type": "Freelance",
-    "description": "Work with clients on improving their presentation and communication skills.",
-    "requirements": [
-      "Public Speaking",
-      "Presentation Skills",
-      "Confidence Building"
-    ],
-    "salary": "$40/hour",
-    "postedDate": "2025-04-10"
-  },
-  {
-    "id": "j8",
-    "category": "job",
-    "title": "Freelancing & Business Skills Mentor",
-    "company": "SkillSprint",
-    "location": "Remote",
-    "type": "Part-Time",
-    "description": "Coach creatives and tech freelancers on branding, pricing, and proposals.",
-    "requirements": ["Business Development", "Freelancing", "Coaching"],
-    "salary": "$38/hour",
-    "postedDate": "2025-04-09"
-  },
-  {
-    "id": "j9",
-    "category": "job",
-    "title": "Backend Engineering Tutor",
-    "company": "StackFlow Academy",
-    "location": "San Francisco, CA",
-    "type": "Full-Time",
-    "description": "Teach Node.js, Express, MongoDB, and RESTful APIs to backend learners.",
-    "requirements": ["Node.js", "Express", "MongoDB", "REST APIs"],
-    "salary": "$85,000/year",
-    "postedDate": "2025-04-08"
-  },
-  {
-    "id": "j10",
-    "category": "job",
-    "title": "Excel & Spreadsheet Skills Instructor",
-    "company": "SheetSmart",
-    "location": "Remote",
-    "type": "Part-Time",
-    "description": "Teach Excel/Sheets formulas, dashboards, and automation tips.",
-    "requirements": ["Microsoft Excel", "Google Sheets", "Data Analysis"],
-    "salary": "$32/hour",
-    "postedDate": "2025-04-07"
+    "id": "c4",
+    "category": "course",
+    "title": "Mastering JavaScript: From Zero to Hero",
+    "description": "A full-stack journey from basic syntax to building full applications.",
+    "price": 99.99,
+    "duration": "6 weeks",
+    "level": "Beginner to Advanced",
+    "postedDate": "2025-04-15",
+    "tutor": "John Doe",
+    "coverImage": "https://img.freepik.com/free-photo/students-paying-attention-class_23-2148844729.jpg?ga=GA1.1.1312441652.1745884555&semt=ais_hybrid&w=740"
   },
   {
     "id": "m1",

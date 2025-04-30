@@ -1,8 +1,10 @@
 export interface IJob {
     id: string;
     category: "job";
-    title: string;
+    jobTitle: string;
     company: string;
+    isFullTime: boolean;
+    experience: string;
     location: string;
     type: string;
     description: string;
@@ -10,4 +12,6 @@ export interface IJob {
     salary: string;
     postedDate: string;
     tags?: string[]
+    postedTime?: string;
+    profileImage?: string;
 }

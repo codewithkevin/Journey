@@ -10,8 +10,6 @@ import {
 import { Tabs, MaterialTabBar } from "react-native-collapsible-tab-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { categoryTabs } from "@/dummy/categoryTabs.dummy";
-import { useMemo } from "react";
-import contentData from "../../../dummy/posts.json";
 import storyData from "../../../dummy/stories.json";
 import { IJob } from "@/types/job.types";
 import { ICourse } from "@/types/courses.types";
@@ -25,6 +23,7 @@ import { ThemedText } from "@/components/ThemedText";
 import StoriesComponent from "@/components/ui/stories/Story";
 import { IBlurb } from "@/types/blurbs.types";
 import Blurb from "@/components/ui/Blurbs";
+import JobCard from "@/components/ui/cards/JobCard";
 
 type ContentItem = IJob | ICourse | IMentor | IBlurb;
 
@@ -33,12 +32,10 @@ const TabContent = ({ tabName }: { tabName: string }) => {
 
   const renderItem = ({ item }: { item: ContentItem }) => {
     switch (item.category) {
-      case "course":
-        return <CourseCard item={item} />;
-      case "mentorship":
-        return <MentorCard item={item} />;
       case "blurbs":
         return <Blurb item={item} />;
+      case "job":
+        return <JobCard item={item} />;
       default:
         return null;
     }
@@ -58,95 +55,15 @@ const TabContent = ({ tabName }: { tabName: string }) => {
   if (tabName === "Find Mentors") {
     const mentors = data.filter((item) => item.category === "mentorship");
 
-    return (
-      <Tabs.ScrollView
-        contentContainerStyle={[
-          styles.listContainer,
-          { paddingBottom: 100, marginTop: 10, gap: 20 },
-        ]}
-        showsVerticalScrollIndicator={false}
-      >
-        {renderStories()}
-        {mentors.length > 0 && (
-          <View style={styles.sectionContainer}>
-            <ThemedText
-              style={{
-                marginLeft: 10,
-              }}
-              type="heading"
-            >
-              Top Mentors
-            </ThemedText>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.horizontalList}
-            >
-              {mentors.map((item) => (
-                <View key={item.id} style={styles.cardContainer}>
-                  <MentorCard item={item} />
-                </View>
-              ))}
-            </ScrollView>
-          </View>
-        )}
-        {mentors.length > 0 && (
-          <View style={styles.sectionContainer}>
-            <ThemedText
-              style={{
-                marginLeft: 10,
-              }}
-              type="heading"
-            >
-              Suggested Mentors
-            </ThemedText>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={styles.horizontalList}
-            >
-              {mentors.map((item) => (
-                <View key={item.id} style={styles.cardContainer}>
-                  <MentorCard item={item} />
-                </View>
-              ))}
-            </ScrollView>
-          </View>
-        )}
-        {mentors.length > 0 && (
-          <View style={styles.sectionContainer}>
-            <ThemedText
-              style={{
-                marginLeft: 10,
-              }}
-              type="heading"
-            >
-              New Mentors
-            </ThemedText>
-            <View
-              style={{
-                flexDirection: "row",
-                flexWrap: "wrap",
-                marginHorizontal: 6,
-              }}
-            >
-              {mentors.map((item) => (
-                <View
-                  key={item.id}
-                  style={{
-                    width: "50%",
-                    paddingHorizontal: 6,
-                    marginBottom: 12,
-                  }}
-                >
-                  <MentorCard item={item} />
-                </View>
-              ))}
-            </View>
-          </View>
-        )}
-      </Tabs.ScrollView>
+    return renderMentors({ mentors });
+  }
+
+  if (tabName === "Courses") {
+    const courses: ICourse[] = data.filter(
+      (item) => item.category === "course"
     );
+
+    return renderCourses({ courses });
   }
 
   return (
@@ -160,13 +77,40 @@ const TabContent = ({ tabName }: { tabName: string }) => {
         { paddingBottom: 100, gap: 20 },
       ]}
       showsVerticalScrollIndicator={false}
-      ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
+      ItemSeparatorComponent={() => <View style={{ height: 1 }} />}
     />
   );
 };
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
+
+  return (
+    <ThemedView className="flex-1">
+      <Tabs.Container
+        renderTabBar={renderTabBar}
+        pagerProps={{ scrollEnabled: true }}
+        initialTabName="Find Mentors"
+        minHeaderHeight={-190}
+        revealHeaderOnScroll
+        headerContainerStyle={{
+          backgroundColor: "transparent",
+          elevation: 0,
+          shadowOpacity: 0,
+        }}
+        headerHeight={insets.top + 60}
+      >
+        {categoryTabs.map((tab) => (
+          <Tabs.Tab name={tab} key={tab}>
+            <TabContent tabName={tab} />
+          </Tabs.Tab>
+        ))}
+      </Tabs.Container>
+    </ThemedView>
+  );
+}
+
+const renderTabBar = (props: any) => {
   const colorScheme = useColorScheme();
 
   const activeColor =
@@ -177,7 +121,7 @@ export default function HomeScreen() {
     colorScheme === "dark" ? "#FFFFFF" : Colors[colorScheme ?? "light"].text;
   const backgroundColor = Colors[colorScheme ?? "light"].primary;
 
-  const renderTabBar = (props: any) => (
+  return (
     <MaterialTabBar
       {...props}
       indicatorStyle={{
@@ -208,31 +152,7 @@ export default function HomeScreen() {
       }}
     />
   );
-
-  return (
-    <ThemedView className="flex-1">
-      <Tabs.Container
-        renderTabBar={renderTabBar}
-        pagerProps={{ scrollEnabled: true }}
-        initialTabName="Blurbs"
-        minHeaderHeight={-190}
-        revealHeaderOnScroll
-        headerContainerStyle={{
-          backgroundColor: "transparent",
-          elevation: 0,
-          shadowOpacity: 0,
-        }}
-        headerHeight={insets.top + 60}
-      >
-        {categoryTabs.map((tab) => (
-          <Tabs.Tab name={tab} key={tab}>
-            <TabContent tabName={tab} />
-          </Tabs.Tab>
-        ))}
-      </Tabs.Container>
-    </ThemedView>
-  );
-}
+};
 
 const renderStories = () => {
   return (
@@ -242,6 +162,197 @@ const renderStories = () => {
       renderItem={({ item }) => <StoriesComponent stories={item} />}
       horizontal
       showsHorizontalScrollIndicator={false}
+    />
+  );
+};
+
+const renderCourses = ({ courses }: { courses: ICourse[] }) => {
+  const sections = [
+    {
+      title: "Stories",
+      data: [null],
+      renderItem: () => renderStories(),
+    },
+    {
+      title: "Top Courses",
+      data: [null],
+      renderItem: () => (
+        <View
+          style={{
+            gap: 10,
+          }}
+        >
+          <ThemedText type="title" style={{ marginLeft: 15 }}>
+            Top Courses
+          </ThemedText>
+          <FlatList
+            data={courses}
+            renderItem={({ item }) => (
+              <View>
+                <CourseCard item={item} />
+              </View>
+            )}
+            keyExtractor={(item) => item.id}
+            showsVerticalScrollIndicator={false}
+            ItemSeparatorComponent={() => <View style={{ height: 1 }} />}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            bounces={false}
+            contentContainerStyle={{
+              marginHorizontal: 5,
+            }}
+          />
+        </View>
+      ),
+    },
+    {
+      title: "New Courses",
+      data: [null],
+      renderItem: () => (
+        <View style={{ gap: 10 }}>
+          <ThemedText type="subtitle" style={{ marginLeft: 15 }}>
+            New Courses
+          </ThemedText>
+          <FlatList
+            data={courses}
+            renderItem={({ item }) => <CourseCard item={item} />}
+            keyExtractor={(item) => item.id}
+            showsVerticalScrollIndicator={false}
+            ItemSeparatorComponent={() => <View style={{ height: 1 }} />}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            bounces={false}
+            contentContainerStyle={{
+              marginHorizontal: 5,
+            }}
+          />
+        </View>
+      ),
+    },
+  ];
+
+  return (
+    <Tabs.SectionList
+      sections={sections}
+      keyExtractor={(item, index) => index.toString()}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        gap: 10,
+        paddingTop: 10,
+      }}
+    />
+  );
+};
+
+const renderMentors = ({ mentors }: { mentors: IMentor[] }) => {
+  const sections = [
+    {
+      title: "Stories",
+      data: [null],
+      renderItem: () => renderStories(),
+    },
+    {
+      title: "Top Mentors",
+      data: [null],
+      renderItem: () => (
+        <View style={{ gap: 15 }}>
+          <ThemedText
+            style={{
+              marginLeft: 10,
+            }}
+            type="heading"
+          >
+            Top Mentors
+          </ThemedText>
+          <FlatList
+            data={mentors}
+            renderItem={({ item }) => <MentorCard item={item} />}
+            keyExtractor={(item) => item.id}
+            showsVerticalScrollIndicator={false}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            bounces={false}
+            contentContainerStyle={{
+              marginHorizontal: 10,
+              gap: 25,
+            }}
+          />
+        </View>
+      ),
+    },
+    {
+      title: "Suggested Mentors",
+      data: [null],
+      renderItem: () => (
+        <View style={{ gap: 15 }}>
+          <ThemedText
+            style={{
+              marginLeft: 10,
+            }}
+            type="heading"
+          >
+            Suggested Mentors
+          </ThemedText>
+          <FlatList
+            data={mentors}
+            renderItem={({ item }) => <MentorCard item={item} />}
+            keyExtractor={(item) => item.id}
+            showsVerticalScrollIndicator={false}
+            ItemSeparatorComponent={() => <View style={{ height: 1 }} />}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            bounces={false}
+            contentContainerStyle={{
+              marginHorizontal: 10,
+              gap: 25,
+            }}
+          />
+        </View>
+      ),
+    },
+    {
+      title: "New Mentors",
+      data: [null],
+      renderItem: () => (
+        <View style={{ gap: 15, paddingHorizontal: 15 }}>
+          <ThemedText type="heading">New Mentors</ThemedText>
+          <FlatList
+            data={mentors}
+            renderItem={({ item, index }) => (
+              <View
+                style={{
+                  width: "48%",
+                  marginRight: index % 2 === 0 ? "4%" : 0,
+                  marginBottom: 15,
+                }}
+              >
+                <MentorCard item={item} />
+              </View>
+            )}
+            keyExtractor={(item) => item.id}
+            showsVerticalScrollIndicator={false}
+            numColumns={2}
+            showsHorizontalScrollIndicator={false}
+            bounces={false}
+            contentContainerStyle={{
+              paddingHorizontal: 10,
+            }}
+          />
+        </View>
+      ),
+    },
+  ];
+
+  return (
+    <Tabs.SectionList
+      sections={sections}
+      keyExtractor={(item, index) => index.toString()}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{
+        gap: 10,
+        paddingTop: 10,
+        paddingBottom: 100,
+      }}
     />
   );
 };
