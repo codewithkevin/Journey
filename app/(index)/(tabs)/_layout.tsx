@@ -6,8 +6,8 @@ import { HapticTab } from "@/components/HapticTab";
 import { IconSymbol } from "@/components/ui/IconSymbol";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import BlurTabBarBackground from "@/components/ui/TabBarBackground.ios";
 import { Feather } from "@expo/vector-icons";
+import TabBarBackground from "@/components/ui/TabBarBackground";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -18,7 +18,7 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].text,
         headerShown: false,
         tabBarButton: HapticTab,
-        tabBarBackground: BlurTabBarBackground,
+        tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
           ios: {
             position: "absolute",

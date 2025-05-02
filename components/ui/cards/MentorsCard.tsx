@@ -10,43 +10,52 @@ import React from "react";
 import { IMentor } from "@/types/mentor.types";
 import { LinearGradient } from "expo-linear-gradient"; // ← import this!
 import { ThemedText } from "@/components/ThemedText";
+import { router } from "expo-router";
 
 export default function MentorCard({ item }: { item: IMentor }) {
-  const colorScheme = useColorScheme();
+  const goToPost = () => {
+    const postId = item.id;
+    if (postId) {
+      router.push(`/(index)/content/mentor-details/${postId}`);
+    } else {
+      console.warn("Post ID is missing, cannot navigate");
+    }
+  };
 
   return (
-    <ImageBackground
-      source={{ uri: item.profileImage }}
-      style={styles.imageBackground}
-      imageStyle={styles.image} // for borderRadius without weird bugs
-      resizeMode="cover"
-    >
-      {/* Gradient at the bottom */}
-      <LinearGradient
-        colors={["transparent", "rgba(0,0,0,0.8)"]} // transparent at top → dark at bottom
-        style={styles.gradient}
+    <TouchableOpacity onPress={goToPost}>
+      <ImageBackground
+        source={{ uri: item.profileImage }}
+        style={styles.imageBackground}
+        imageStyle={styles.image}
+        resizeMode="cover"
       >
-        <ThemedText
-          type="heading"
-          style={{
-            textAlign: "center",
-          }}
+        <LinearGradient
+          colors={["transparent", "rgba(0,0,0,0.8)"]}
+          style={styles.gradient}
         >
-          {item.name}
-        </ThemedText>
+          <ThemedText
+            type="heading"
+            style={{
+              textAlign: "center",
+            }}
+          >
+            {item.name}
+          </ThemedText>
 
-        <ThemedText type="defaultSemiBold">{item.location}</ThemedText>
+          <ThemedText type="defaultSemiBold">{item.location}</ThemedText>
 
-        <ThemedText
-          style={{
-            textAlign: "center",
-          }}
-          type="defaultSemiBold"
-        >
-          {item.title}
-        </ThemedText>
-      </LinearGradient>
-    </ImageBackground>
+          <ThemedText
+            style={{
+              textAlign: "center",
+            }}
+            type="defaultSemiBold"
+          >
+            {item.title}
+          </ThemedText>
+        </LinearGradient>
+      </ImageBackground>
+    </TouchableOpacity>
   );
 }
 

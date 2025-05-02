@@ -1,16 +1,9 @@
 import { AntDesign } from "@expo/vector-icons";
-import {
-  View,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  ScrollView,
-  FlatList,
-} from "react-native";
+import { View, StyleSheet, Text, useColorScheme, FlatList } from "react-native";
 import { Tabs, MaterialTabBar } from "react-native-collapsible-tab-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { categoryTabs } from "@/dummy/categoryTabs.dummy";
-import storyData from "../../../dummy/stories.json";
+import storyData from "../../../../dummy/stories.json";
 import { IJob } from "@/types/job.types";
 import { ICourse } from "@/types/courses.types";
 import { IMentor } from "@/types/mentor.types";
