@@ -80,7 +80,9 @@ export default function MentorDetails() {
           ),
         }}
       />
-      <ScrollView></ScrollView>
+      <ScrollView>
+        <Text>Hello</Text>
+      </ScrollView>
     </>
   );
 }

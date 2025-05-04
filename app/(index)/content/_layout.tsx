@@ -14,7 +14,6 @@ export default function ContentLayout() {
               headerLargeTitleShadowVisible: false,
               headerShadowVisible: true,
               headerLargeStyle: {
-                // NEW: Make the large title transparent to match the background.
                 backgroundColor: "transparent",
               },
             }),

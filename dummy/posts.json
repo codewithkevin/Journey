@@ -8,7 +8,7 @@
     "experience": "5+ years",
     "location": "Remote",
     "type": "Part-Time",
-    "description": "Mentor junior developers on JavaScript and frontend best practices.",
+    "description": "CodeCamp Academy is looking for a highly experienced frontend developer to join our team as a part-time mentor. In this role, you'll be guiding and supporting junior developers in their journey to master JavaScript, React, and other frontend technologies. Your primary responsibility will be to deliver mentorship that bridges the gap between theory and practical, real-world application. We're seeking someone who is passionate about education and possesses excellent communication skills to explain technical concepts clearly and patiently. As a mentor, you will host one-on-one or small group sessions remotely, review code, provide feedback, share best practices, and help troubleshoot problems. In addition to technical guidance, you will inspire junior developers to think critically, write clean code, and stay up-to-date with the latest tools and trends in web development. If you’re a frontend professional with a strong desire to give back and help shape the next generation of developers, this is an excellent opportunity to make a lasting impact — all from the comfort of your home.",
     "requirements": [
       "JavaScript",
       "React",
@@ -30,7 +30,7 @@
     "experience": "1+ years",
     "location": "On-site",
     "type": "Full Type",
-    "description": "Create and maintain servers and networks, install and configure software, and troubleshoot issues.",
+    "description": "Facebook is hiring a motivated System Administrator to join our on-site IT infrastructure team. As a System Administrator, you will be responsible for installing, configuring, and maintaining servers, networks, and various software applications. You’ll work alongside experienced engineers to ensure optimal performance and security across systems that support our vast user base. This is a full-time position for someone who is ready to learn, adapt, and grow within a dynamic, fast-paced environment. The ideal candidate will have a strong foundation in system administration and a working understanding of frontend technologies such as JavaScript, React, and HTML/CSS, as cross-functional collaboration with web teams may be required. You will play an essential role in managing access controls, monitoring system performance, handling updates and patches, and supporting incident response efforts. This position is perfect for someone with a year or more of hands-on experience who is eager to contribute to the infrastructure behind one of the world’s most visited platforms. Problem-solvers and critical thinkers encouraged to apply.",
     "requirements": [
       "JavaScript",
       "React",
@@ -52,7 +52,7 @@
     "experience": "5+ years",
     "location": "Remote",
     "type": "Part-Time",
-    "description": "Create and maintain servers and networks, install and configure software, and troubleshoot issues.",
+    "description": "Google is seeking an experienced DevOps Engineer for a remote, part-time position. In this role, you will be responsible for developing and maintaining robust CI/CD pipelines, managing scalable cloud infrastructure, and collaborating with cross-functional development teams to streamline deployment processes. You will also contribute to infrastructure-as-code practices and help implement automation strategies that reduce manual effort and increase system reliability. An ideal candidate will possess deep experience in server administration, cloud computing (AWS/GCP), and configuration management tools. While this role is DevOps-focused, familiarity with frontend frameworks such as React and JavaScript will be beneficial, as our teams frequently engage in full-stack projects. You will also serve as a technical advisor to junior engineers, sharing best practices and ensuring that deployments are both secure and efficient. This is a unique opportunity to work with one of the world’s leading tech companies while enjoying the flexibility of remote, part-time work.",
     "requirements": [
       "JavaScript",
       "React",
@@ -64,18 +64,6 @@
     "tags": ["JavaScript", "remote", "part-time"],
     "postedTime": "1 Week Ago",
     "profileImage": "https://img.freepik.com/free-psd/google-icon-isolated-3d-render-illustration_47987-9777.jpg?ga=GA1.1.1312441652.1745884555&semt=ais_hybrid&w=740"
-  },
-  {
-    "id": "c1",
-    "category": "course",
-    "title": "Mastering JavaScript: From Zero to Hero",
-    "description": "A full-stack journey from basic syntax to building full applications.",
-    "price": 99.99,
-    "duration": "6 weeks",
-    "level": "Beginner to Advanced",
-    "postedDate": "2025-04-15",
-    "tutor": "John Doe",
-    "coverImage": "https://img.freepik.com/free-photo/students-paying-attention-class_23-2148844729.jpg?ga=GA1.1.1312441652.1745884555&semt=ais_hybrid&w=740"
   },
   {
     "id": "c2",

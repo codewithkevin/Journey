@@ -79,3 +79,5 @@ export const blueColors = {
   800: '#1e40af',
   900: '#1e3a8a',
 };
+
+

@@ -1,14 +1,7 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  useColorScheme,
-  ImageBackground,
-} from "react-native";
+import { StyleSheet, TouchableOpacity, ImageBackground } from "react-native";
 import React from "react";
 import { IMentor } from "@/types/mentor.types";
-import { LinearGradient } from "expo-linear-gradient"; // ← import this!
+import { LinearGradient } from "expo-linear-gradient";
 import { ThemedText } from "@/components/ThemedText";
 import { router } from "expo-router";
 
@@ -16,7 +9,7 @@ export default function MentorCard({ item }: { item: IMentor }) {
   const goToPost = () => {
     const postId = item.id;
     if (postId) {
-      router.push(`/(index)/content/mentor-details/${postId}`);
+      router.push(`/(index)/content/mentor/post/${postId}`);
     } else {
       console.warn("Post ID is missing, cannot navigate");
     }
