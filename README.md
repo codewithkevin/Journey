@@ -1,51 +1,36 @@
-# Welcome to your Expo app 👋
+# Journey Social 
+A React Native mobile app built with Expo and TypeScript. Cross idea between Udemy and Social media apps
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+# Tech Stack
 
-## Get started
+- Expo - React Native framework
+- TypeScript - Type safety
+- React Native - Cross-platform mobile development
+- Expo Router - File-based routing
 
-1. Install dependencies
+# Development Options
+After starting the dev server, you can:
 
-   ```bash
-   npm install
-   ```
+- Development Build: Use Expo development build
+- iOS Simulator: Press i to open iOS simulator
+- Android Emulator: Press a to open Android emulator
+- Web: Press w to open in browser
 
-2. Start the app
 
-   ```bash
-    npx expo start
-   ```
+Note: This project requires Expo development builds and does not support Expo Go.
 
-In the output, you'll find options to open the app in a
+# Project Structure
+Journey/
+├── app/          # App screens (file-based routing)
+├── assets/       # Images, fonts, etc.
+├── components/   # Reusable UI components
+└── constants/    # App constants
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+# Available Scripts
+bashnpm start          # Start Expo dev server
+npm run android    # Run on Android
+npm run ios        # Run on iOS
+npm run web        # Run on web
+npm run reset-project  # Reset to blank project
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-# Journey
