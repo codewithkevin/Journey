@@ -252,7 +252,7 @@ export default function MainScreen() {
           </ThemedText>
         </View>
 
-        {/* <Button
+        <Button
           style={{
             width: wp(70),
             backgroundColor: "#181F20",
@@ -260,7 +260,7 @@ export default function MainScreen() {
           size="lg"
         >
           Get Started
-        </Button> */}
+        </Button>
       </View>
 
       {/* Background overlay */}
