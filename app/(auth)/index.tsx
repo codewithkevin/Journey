@@ -1,10 +1,27 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Dimensions,
+  Pressable,
+} from "react-native";
 import React, { useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useResponsive } from "@/hooks/useReponsiveness";
 import { ThemedText } from "@/components/ThemedText";
 import Button from "@/components/ui/button";
 import { zincColors } from "@/constants/Colors";
+import { useGoogleAuth } from "@/hooks/auth/useGoogleAuth";
+import Animated, {
+  interpolate,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from "react-native-reanimated";
 
 const IMAGE_SETS = {
   journey: {
@@ -33,7 +50,6 @@ const IMAGE_SETS = {
   },
 };
 
-// Row configuration for easy customization
 const ROW_CONFIG = [
   { count: 4, imageSet: "journey", label: "Journey" },
   { count: 4, imageSet: "tutors", label: "Tutors" },
@@ -43,10 +59,23 @@ const ROW_CONFIG = [
 
 type ImageSetKey = keyof typeof IMAGE_SETS;
 
+const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
+
+const BUTTON_SIZE = 60;
+const BUTTON_MARGIN = 30;
+const EXPANDED_WIDTH = screenWidth / 1.12;
+const EXPANDED_HEIGHT = screenHeight / 3;
+
 export default function MainScreen() {
   const { top } = useSafeAreaInsets();
   const { wp, hp, scale } = useResponsive();
   const [showLabels, setShowLabels] = useState(false);
+  const { signIn: googleSignIn, isSigninInProgress } = useGoogleAuth();
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const animationProgress = useSharedValue(0);
+  const iconRotation = useSharedValue(0);
+  const iconOpacity = useSharedValue(1);
 
   const renderImageRow = (
     count: number,
@@ -92,6 +121,70 @@ export default function MainScreen() {
       </View>
     );
   };
+
+  const handlePress = () => {
+    if (isExpanded) {
+      // Collapse animation
+      animationProgress.value = withSpring(0, {
+        damping: 20,
+        stiffness: 300,
+      });
+      iconRotation.value = withTiming(0, { duration: 300 });
+      iconOpacity.value = withTiming(1, { duration: 200 });
+
+      setTimeout(() => {
+        runOnJS(setIsExpanded)(false);
+      }, 100);
+    } else {
+      // Expand animation
+      setIsExpanded(true);
+      animationProgress.value = withSpring(1, {
+        damping: 18,
+        stiffness: 200,
+      });
+      iconRotation.value = withTiming(45, { duration: 300 });
+      iconOpacity.value = withTiming(0, { duration: 150 });
+    }
+  };
+
+  const containerAnimatedStyle = useAnimatedStyle(() => {
+    const width = interpolate(
+      animationProgress.value,
+      [0, 1],
+      [BUTTON_SIZE, EXPANDED_WIDTH]
+    );
+
+    const height = interpolate(
+      animationProgress.value,
+      [0, 1],
+      [BUTTON_SIZE, EXPANDED_HEIGHT]
+    );
+
+    const borderRadius = interpolate(
+      animationProgress.value,
+      [0, 1],
+      [BUTTON_SIZE / 2, 24]
+    );
+
+    return {
+      width,
+      height,
+      borderRadius,
+    };
+  });
+
+  const iconAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ rotate: `${iconRotation.value}deg` }],
+      opacity: iconOpacity.value,
+    };
+  });
+
+  const overlayAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: interpolate(animationProgress.value, [0, 0.3, 1], [0, 0, 0.3]),
+    };
+  });
 
   return (
     <View
@@ -159,7 +252,7 @@ export default function MainScreen() {
           </ThemedText>
         </View>
 
-        <Button
+        {/* <Button
           style={{
             width: wp(70),
             backgroundColor: "#181F20",
@@ -167,8 +260,43 @@ export default function MainScreen() {
           size="lg"
         >
           Get Started
-        </Button>
+        </Button> */}
       </View>
+
+      {/* Background overlay */}
+      <Animated.View
+        style={[styles.overlay, overlayAnimatedStyle]}
+        pointerEvents={isExpanded ? "auto" : "none"}
+      >
+        <Pressable
+          style={StyleSheet.absoluteFillObject}
+          onPress={handlePress}
+        />
+      </Animated.View>
+
+      {/* Morphing button */}
+      <Animated.View style={[styles.floatingButton, containerAnimatedStyle]}>
+        <Pressable style={styles.buttonContent} onPress={handlePress}>
+          <Animated.View style={[styles.iconContainer, iconAnimatedStyle]}>
+            <Pressable onPress={handlePress} style={styles.plusIcon}>
+              <View style={styles.plusHorizontal} />
+              <View style={styles.plusVertical} />
+            </Pressable>
+          </Animated.View>
+
+          {/* Expanded content area */}
+          {isExpanded && (
+            <Pressable
+              style={styles.expandedContent}
+              onPress={(e) => e.stopPropagation()}
+            >
+              <View style={styles.contentPlaceholder} />
+              <View style={styles.contentPlaceholder} />
+              <View style={styles.contentPlaceholder} />
+            </Pressable>
+          )}
+        </Pressable>
+      </Animated.View>
     </View>
   );
 }
@@ -199,5 +327,73 @@ const styles = StyleSheet.create({
   },
   bottomSection: {
     alignItems: "center",
+  },
+  // Morphing button styles
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    zIndex: 1,
+  },
+  floatingButton: {
+    position: "absolute",
+    bottom: BUTTON_MARGIN,
+    right: BUTTON_MARGIN,
+    backgroundColor: "#000",
+    shadowColor: "#007AFF",
+    shadowOffset: {
+      width: 0,
+      height: 8,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 8,
+    zIndex: 2,
+  },
+  buttonContent: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 20,
+  },
+  iconContainer: {
+    position: "absolute",
+    top: 20,
+    right: 20,
+    width: 20,
+    height: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  plusIcon: {
+    width: 20,
+    height: 20,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  plusHorizontal: {
+    position: "absolute",
+    width: 16,
+    height: 2,
+    backgroundColor: "white",
+    borderRadius: 1,
+  },
+  plusVertical: {
+    position: "absolute",
+    width: 2,
+    height: 16,
+    backgroundColor: "white",
+    borderRadius: 1,
+  },
+  expandedContent: {
+    flex: 1,
+    width: "100%",
+    marginTop: 40,
+    gap: 16,
+  },
+  contentPlaceholder: {
+    height: 60,
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    borderRadius: 12,
+    width: "100%",
   },
 });
